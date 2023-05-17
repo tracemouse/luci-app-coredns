@@ -26,7 +26,7 @@ service_triggers() {
 
 restore_setting() {
     echo "开始重置 dnsmasq 设置..." >> /tmp/coredns.log
-    rm -f /usr/share/coredns/redirect.lock
+    rm -rf /usr/share/coredns/redirect.lock
     sed -i "/list server/d" /etc/config/dhcp
     uci set dhcp.@dnsmasq[0].noresolv='0'
     uci del dhcp.@dnsmasq[0].cachesize
@@ -115,11 +115,14 @@ start_service() {
 
 stop_service() {
     echo "停止 coredns 服务..." >> /tmp/coredns.log
-    killall coredns >/dev/null 2>&1
-    # pgrep -f coredns | xargs kill
+    # killall coredns >> /tmp/coredns.log
+    pgrep -f /usr/share/coredns/coredns | xargs kill >> /tmp/coredns.log
+    echo "已停止 coredns 服务..." >> /tmp/coredns.log
+
     config_load "coredns"
     config_foreach get_config "coredns"
-    [ "$enabled" -eq "0" ] && [ -f "/usr/share/coredns/redirect.lock" ] && restore_setting
+    # [ "$enabled" -eq "0" ] && [ -f "/usr/share/coredns/redirect.lock" ] && restore_setting
+    restore_setting
     reload_dnsmasq
     delcron
 }
