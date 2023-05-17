@@ -122,7 +122,8 @@ stop_service() {
     config_load "coredns"
     config_foreach get_config "coredns"
     # [ "$enabled" -eq "0" ] && [ -f "/usr/share/coredns/redirect.lock" ] && restore_setting
-    restore_setting
+    [ -f "/usr/share/coredns/redirect.lock" ] && restore_setting
+    # restore_setting
     reload_dnsmasq
     delcron
 }
