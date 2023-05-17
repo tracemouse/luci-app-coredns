@@ -36,6 +36,7 @@ define Package/$(PKG_NAME)/postrm
 	#!/bin/sh
 	rm -rf /usr/lib/lua/luci/i18n/coredns.zh-cn.lmo
 	rm -rf /usr/share/coredns
+	rm -rf /tmp/coredns.log
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
