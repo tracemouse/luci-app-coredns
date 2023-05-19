@@ -24,6 +24,10 @@ config coredns_rule_update 'rule_update'
 	option rule_update_week_time '*'
 	option rule_update_day_time '0'
 
+config coredns_clear_log 'clear_log'
+	option log_auto_clear '1'
+	option log_clear_hour '2'
+
 config coredns_rule_url
     option name '中国域名'
 	option file 'accelerated-domains.china.conf'
