@@ -78,13 +78,15 @@ o:value("180.76.76.76", "180.76.76.76 (Baidu DNS)")
 o:depends("configfile", "/usr/share/coredns/Corefile")
 o.rmempty = true
 
-o = s:option(Value, "path_reload", translate("Path Reload"),translate("changes the reload interval between each path in FROM, Default is 2s, minimal is 1s"))
+o = s:option(Flag, "disable_ipv6", translate("Disable IPv6"))
+o.default = false
+o:depends("configfile", "/usr/share/coredns/Corefile")
 
+o = s:option(Value, "path_reload", translate("Path Reload"),translate("changes the reload interval between each path in FROM, Default is 2s, minimal is 1s"))
 o.default = "2s"
 o:depends("configfile", "/usr/share/coredns/Corefile")
 
 o = s:option(Value, "expire", translate("Expire"), translate("will expire (cached) connections after this time interval, Default is 15s, minimal is 1s"))
-
 o.default = "15s"
 o:depends("configfile", "/usr/share/coredns/Corefile")
 

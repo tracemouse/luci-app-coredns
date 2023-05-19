@@ -15,6 +15,7 @@ get_coredns() {
 	config_get expire $1 expire "15s"
 	config_get max_fails $1 max_fails "3"
 	config_get health_check $1 health_check "2s"
+    config_get disable_ipv6 $1 disable_ipv6 "0"
 }
 
 get_coredns_redir() {
@@ -28,6 +29,8 @@ get_coredns_redir() {
 	config_get expire $1 expire "15s"
 	config_get max_fails $1 max_fails "3"
 	config_get health_check $1 health_check "2s"
+    config_get disable_ipv6 $1 disable_ipv6 0
+
     if [ $enabled -ne 0 ]
     then
         echo "dnsredir /usr/share/coredns/${file} {"
@@ -40,8 +43,8 @@ get_coredns_redir() {
         echo ""
         echo "        to $dns"
         echo "        expire $expire"
-        echo "        no_ipv6"
         [[ "$bootstrap_dns" != "" ]] && echo "        bootstrap $bootstrap_dns"
+        [[  $disable_ipv6 -ne 0 ]] && echo "        no_ipv6"
         echo "    }"
         echo ""
     fi
@@ -90,7 +93,7 @@ cat <<EOF >>$CONF_FILE
         to ${dns}
         `[[ "$bootstrap_dns" != "" ]] && echo "bootstrap $bootstrap_dns"`
         expire $expire
-        no_ipv6
+        `[[  $disable_ipv6 -ne 0 ]] && echo "no_ipv6"`
     }
 }
 

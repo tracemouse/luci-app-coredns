@@ -11,13 +11,13 @@ config coredns 'config'
 	option enabled_cache '0'
 	option enabled_log '1'
 	option configfile '/usr/share/coredns/Corefile'
-	list dns '119.29.29.29'
-	list dns '223.5.5.5'
+	list dns '127.0.0.1:7874'
 	option policy 'random'
 	option path_reload '60s'
 	option expire '15s'
 	option max_fails '3'
 	option health_check '2s'
+	option disable_ipv6 '1'
 
 config coredns_rule_update 'rule_update'
 	option rule_auto_update '0'
@@ -34,11 +34,13 @@ config coredns_rule_url
 	option url 'https://ghproxy.com/https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf'
 	option enabled '0'
 	list dns '119.29.29.29'
+	list dns '223.5.5.5'
 	option policy 'random'
 	option path_reload '60s'
 	option expire '15s'
 	option max_fails '3'
 	option health_check '2s'
+	option disable_ipv6 '0'
 
 config coredns_rule_url
     option name '苹果域名'
@@ -46,11 +48,13 @@ config coredns_rule_url
 	option url 'https://ghproxy.com/https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf'
 	option enabled '0'
 	list dns '119.29.29.29'
+	list dns '223.5.5.5'
 	option policy 'random'
 	option path_reload '60s'
 	option expire '15s'
 	option max_fails '3'
 	option health_check '2s'
+	option disable_ipv6 '0'
 
 config coredns_rule_url
     option name '谷歌域名'
@@ -63,6 +67,7 @@ config coredns_rule_url
 	option expire '15s'
 	option max_fails '3'
 	option health_check '2s'
+	option disable_ipv6 '1'
 
 config coredns_rule_file
     option name '微软域名'
@@ -74,3 +79,4 @@ config coredns_rule_file
 	option expire '15s'
 	option max_fails '3'
 	option health_check '2s'
+	option disable_ipv6 '0'

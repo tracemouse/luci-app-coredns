@@ -115,6 +115,9 @@ msgstr "#开头的行为注释行不起作用"
 msgid "Unparsable lines(including whitespace-only line) are therefore just ignored"
 msgstr "不符合规则的行(例如空行)将会被忽略"
 
+msgid "Disable IPv6"
+msgstr "禁用IPv6 DNS解析"
+
 msgid "Path Reload"
 msgstr "文件扫描时间间隔"
 
