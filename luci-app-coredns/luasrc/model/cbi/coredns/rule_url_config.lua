@@ -81,9 +81,6 @@ o:value("114.114.114.114", "114.114.114.114 (114DNS Primary)")
 o:value("114.114.115.115", "114.114.115.115 (114DNS Secondary)")
 o:value("180.76.76.76", "180.76.76.76 (Baidu DNS)")
 
-o = s:option(Flag, "disable_ipv6", translate("Disable IPv6"))
-o.default = false
-
 o = s:option(Value, "path_reload", translate("Path Reload"),translate("changes the reload interval between each path in FROM, Default is 2s, minimal is 1s"))
 o.rmempty = false
 o.optional = false
