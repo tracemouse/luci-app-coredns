@@ -63,11 +63,41 @@ setcron() {
     rule_auto_update=$(uci -q get coredns.rule_update.rule_auto_update)
     rule_update_week_time=$(uci -q get coredns.rule_update.rule_update_week_time)
     rule_update_day_time=$(uci -q get coredns.rule_update.rule_update_day_time)
-    [ "$rule_auto_update" -eq 1 ] && echo "0 $rule_update_day_time * * $rule_update_week_time $RULE_UPDATE_SCRIPT" >> $CRON_FILE
     
-    echo "30 2 * * * /usr/share/coredns/clear_log.sh" >> $CRON_FILE
-    
+    if [ "$rule_auto_update" -eq 1 ] 
+    then 
+        echo "开始设置转发规则自动更新" >> /tmp/coredns.log
+        task="0 $rule_update_day_time * * $rule_update_week_time $RULE_UPDATE_SCRIPT"
+        echo "添加定时规则 ${task}" >> /tmp/coredns.log
+        echo "${task}"  >> $CRON_FILE
+        echo "已完成添加"
+    else
+        echo "未启用转发规则自动更新" >> /tmp/coredns.log
+    fi
+
+    log_auto_clear=$(uci -q get coredns.clear_log.log_auto_clear)
+    log_clear_hour=$(uci -q get coredns.clear_log.log_clear_hour)
+
+    if [ "$log_auto_clear" -eq 1 ] 
+    then
+        echo "开始设置自动清空日志" >> /tmp/coredns.log
+        task="0 */${log_clear_hour} * * * /usr/share/coredns/clear_log.sh"
+        echo "添加定时规则 ${task}" >> /tmp/coredns.log
+        echo "${task}"  >> $CRON_FILE
+        echo "已完成添加"
+    else
+        echo "未启用自动清空日志" >> /tmp/coredns.log
+        echo "为防止占用过多内存将强制设置为每天0点清空日志" >> /tmp/coredns.log
+        task="0 0 * * * /usr/share/coredns/clear_log.sh"
+        echo "添加定时规则 ${task}" >> /tmp/coredns.log
+        echo "${task}"  >> $CRON_FILE
+        echo "已完成添加"
+    fi
+
+    echo "开始重载定时任务配置文件"
     crontab $CRON_FILE
+
+    echo "完成设置定时脚本" >> /tmp/coredns.log
 }
 
 delcron() {

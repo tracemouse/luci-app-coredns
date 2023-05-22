@@ -4,6 +4,9 @@ msgstr "基本设置"
 msgid "Redir Rule"
 msgstr "转发规则"
 
+msgid "Auto Update"
+msgstr "自动更新"
+
 msgid "Rule Update"
 msgstr "规则更新"
 
@@ -88,6 +91,15 @@ msgstr "订阅地址(URL)"
 msgid "Manual subscription"
 msgstr "手工订阅"
 
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "View"
+msgstr "查看"
+
 msgid "Domain List"
 msgstr "域名列表"
 
@@ -102,6 +114,9 @@ msgstr "#开头的行为注释行不起作用"
 
 msgid "Unparsable lines(including whitespace-only line) are therefore just ignored"
 msgstr "不符合规则的行(例如空行)将会被忽略"
+
+msgid "Disable IPv6"
+msgstr "禁用IPv6 DNS解析"
 
 msgid "Path Reload"
 msgstr "文件扫描时间间隔"
@@ -145,6 +160,15 @@ msgstr "更新时间"
 msgid "Update Cycle"
 msgstr "更新周期"
 
+msgid "Clear Cycle"
+msgstr "清空周期"
+
+msgid "Every"
+msgstr "每"
+
+msgid "hours"
+msgstr "小时"
+
 msgid "Every Day"
 msgstr "每天"
 
@@ -175,6 +199,9 @@ msgstr "检查并更新"
 msgid "Enable Auto Update"
 msgstr "启用自动更新"
 
+msgid "Enable Auto Clear"
+msgstr "启用自动清空"
+
 msgid "Updating"
 msgstr "正在更新"
 
@@ -199,7 +226,7 @@ msgstr "日志文件"
 msgid "Logs"
 msgstr "日志"
 
-msgid "Clear logs"
+msgid "Clear Logs"
 msgstr "清空日志"
 
 msgid "Upload"

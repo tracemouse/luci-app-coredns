@@ -47,6 +47,12 @@ o = s:option(DummyValue, "bootstrap_dns", translate("Bootstrap DNS"))
 o.width = "auto"
 o.rawhtml = true 
 
+o = s:option(Button, "_view", translate("View"))
+o.inputstyle = "reset"
+function o.write(t, n)
+	luci.http.redirect(api.url("rule_file_content/" .. n))
+end
+
 s = m:section(TypedSection, "coredns_rule_url", "DNS " .. translate("Redir Rule") .. " - " .. translate("Subscribe"))
 s.addremove = true
 s.anonymous = true
@@ -77,11 +83,17 @@ o = s:option(DummyValue, "bootstrap_dns", translate("Bootstrap DNS"))
 o.width = "auto"
 o.rawhtml = true 
 
-o = s:option(Button, "_update", translate("Manual subscription"))
+o = s:option(Button, "_update", translate("Update"))
 o.inputstyle = "apply"
 function o.write(t, n)
 	luci.sys.call("lua /usr/share/coredns/update_rule.lua " .. n .. " > /dev/null 2>&1 &")
 	luci.http.redirect(api.url("log"))
+end
+
+o = s:option(Button, "_view", translate("View"))
+o.inputstyle = "reset"
+function o.write(t, n)
+	luci.http.redirect(api.url("rule_file_content/" .. n))
 end
 
 s = m:section(TypedSection, "coredns", "Hosts " .. translate("File"), translate("The hosts file has a top prority over DNS"))

@@ -40,6 +40,10 @@ o = s:option(Flag, "enabled_cache", translate("Enable Cache"), translate("Please
 o.default = false
 o:depends("configfile", "/usr/share/coredns/Corefile")
 
+o = s:option(Flag, "disable_ipv6", translate("Disable IPv6"))
+o.default = false
+o:depends("configfile", "/usr/share/coredns/Corefile")
+
 o = s:option(DynamicList, "dns", translate("Default DNS"), translate("Upstream DNS server"))
 o:value("119.29.29.29", "119.29.29.29 (DNSPod Primary)")
 o:value("119.28.28.28", "119.28.28.28 (DNSPod Secondary)")
@@ -79,12 +83,10 @@ o:depends("configfile", "/usr/share/coredns/Corefile")
 o.rmempty = true
 
 o = s:option(Value, "path_reload", translate("Path Reload"),translate("changes the reload interval between each path in FROM, Default is 2s, minimal is 1s"))
-
 o.default = "2s"
 o:depends("configfile", "/usr/share/coredns/Corefile")
 
 o = s:option(Value, "expire", translate("Expire"), translate("will expire (cached) connections after this time interval, Default is 15s, minimal is 1s"))
-
 o.default = "15s"
 o:depends("configfile", "/usr/share/coredns/Corefile")
 

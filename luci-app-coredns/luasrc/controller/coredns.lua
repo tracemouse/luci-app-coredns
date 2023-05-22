@@ -18,7 +18,8 @@ function index()
     entry({"admin", "services", "coredns", "rule_list"}, cbi("coredns/rule_list"), _("Redir Rule"), 2).leaf = true
     entry({"admin", "services", "coredns", "rule_url_config"}, cbi("coredns/rule_url_config")).leaf = true
     entry({"admin", "services", "coredns", "rule_file_config"}, cbi("coredns/rule_file_config")).leaf = true
-    entry({"admin", "services", "coredns", "rule_update"}, cbi("coredns/rule_update"), _("Rule Update"), 3).leaf = true
+    entry({"admin", "services", "coredns", "rule_file_content"}, cbi("coredns/rule_file_content",{hideapplybtn=true, hidesavebtn=true, hideresetbtn=true})).leaf = true
+    entry({"admin", "services", "coredns", "auto_update"}, cbi("coredns/auto_update"), _("Auto Update"), 3).leaf = true
     entry({"admin", "services", "coredns", "rule_refresh"}, call("rule_refresh")).leaf = true
     entry({"admin", "services", "coredns", "coredns_upload"}, form("coredns/coredns_upload"), _("Core Update"), 4).leaf = true
     entry({"admin", "services", "coredns", "log"}, cbi("coredns/log"), _("Logs"), 5).leaf = true
