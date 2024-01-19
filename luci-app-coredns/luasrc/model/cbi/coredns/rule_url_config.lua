@@ -25,11 +25,11 @@ o.description = translate(str)
 
 function o.validate(self, value)
     result = string.match(value, '[a-z]*://[^ >,;]*')
-	if result == true then
-		return true;
-	else
-		return nil, translate("Please input a valid Subscribe URL!")
-	end
+    if result == nil then
+            return nil, translate("Please input a valid Subscribe URL!")
+    else
+            return result
+    end
 end
 
 o = s:option(Value, "file", translate("File"), translate("Path") .. ":/usr/share/coredns/")
